@@ -102,7 +102,7 @@ public class ImageControllerTest {
         Mockito.when(imageService.getByIdWithJoin(Mockito.anyInt())).thenReturn(image);
 
         // checks to see if the returned view contains the title of the image
-        this.mockMvc.perform(get("/images/someImageId"))
+        this.mockMvc.perform(get("/images/someTitle"))
                 .andExpect(content().string(containsString("This is an image")))
                 .andExpect(content().string(containsString("My Username")));
     }

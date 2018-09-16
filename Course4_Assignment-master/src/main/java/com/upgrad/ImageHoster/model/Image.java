@@ -38,12 +38,18 @@ public class Image implements Serializable{
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "image")
+    private List<Comment> comments = new ArrayList<Comment>();
+
     // These  annotations creates a join table for many-to-many relationships
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="Image_Tag",
         joinColumns = { @JoinColumn(name = "image_id")},
         inverseJoinColumns = { @JoinColumn(name = "tag_id")})
     private List<Tag> tags = new ArrayList<Tag>();
+
+
+
 
 
     public Image() { }
